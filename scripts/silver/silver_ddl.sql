@@ -8,43 +8,73 @@ Script Purpose:
 	  Run this script to re-define the DDL structure of 'silver' Tables.
 ===============================================================================
 */
-if object_id('silver.crm_cust_info','U') is not null drop table silver.crm_cust_info;
-create table silver.crm_cust_info
+IF OBJECT_ID('SILVER.CRM_CUST_INFO','U') IS NOT NULL DROP TABLE SILVER.CRM_CUST_INFO;
+GO
+CREATE TABLE SILVER.CRM_CUST_INFO
 (
-	cst_id	INT,
-	cst_key	NVARCHAR(30),
-	cst_firstname NVARCHAR(30),
-	cst_lastname NVARCHAR(30),	
-	cst_marital_status NVARCHAR(5),	
-	cst_gender NVARCHAR(5),	
-	cst_create_date DATE,
-	dwh_create_date datetime default getdate()
+	CST_ID	INT,
+	CST_KEY	NVARCHAR(30),
+	CST_FIRSTNAME NVARCHAR(30),
+	CST_LASTNAME NVARCHAR(30),	
+	CST_MARITAL_STATUS NVARCHAR(5),	
+	CST_GENDER NVARCHAR(5),	
+	CST_CREATE_DATE DATE,
+	DWH_CREATE_DATE DATETIME DEFAULT GETDATE()
 );
-go
-if object_id('silver.crm_prd_info','U') is not null drop table silver.crm_prd_info;
-create table silver.crm_prd_info
-(prd_id INT,
-cat_id NVARCHAR(10),
-prd_key NVARCHAR(30),	
-prd_nm NVARCHAR(60),	
-prd_cost INT,
-prd_line NVARCHAR(5),	
-prd_start_dt DATE,	
-prd_end_dt DATE,
+GO
+IF OBJECT_ID('SILVER.CRM_PRD_INFO','U') IS NOT NULL DROP TABLE SILVER.CRM_PRD_INFO;
+GO
+CREATE TABLE SILVER.CRM_PRD_INFO
+(PRD_ID INT,
+CAT_ID NVARCHAR(10),
+PRD_KEY NVARCHAR(30),	
+PRD_NM NVARCHAR(60),	
+PRD_COST INT,
+PRD_LINE NVARCHAR(5),	
+PRD_START_DT DATE,	
+PRD_END_DT DATE,
 DWH_CREATE_DATE DATETIME DEFAULT GETDATE()
 );
-go
-if object_id('silver.crm_sales_details','U') is not null drop table silver.crm_sales_details;
-create table silver.crm_sales_details
+GO
+IF OBJECT_ID('SILVER.CRM_SALES_DETAILS','U') IS NOT NULL DROP TABLE SILVER.CRM_SALES_DETAILS;
+GO
+CREATE TABLE SILVER.CRM_SALES_DETAILS
 (
-sls_ord_num NVARCHAR(20),
-sls_prd_key	NVARCHAR(20),
-sls_cust_id	INT,
-sls_order_dt date,
-sls_ship_dt	date,
-sls_due_dt date,	
-sls_sales INT,	
-sls_quantity INT,	
-sls_price INT,
-DWH_CREATE_DATE datetime default getdate()
+SLS_ORD_NUM NVARCHAR(20),
+SLS_PRD_KEY	NVARCHAR(20),
+SLS_CUST_ID	INT,
+SLS_ORDER_DT DATE,
+SLS_SHIP_DT	DATE,
+SLS_DUE_DT DATE,	
+SLS_SALES INT,	
+SLS_QUANTITY INT,	
+SLS_PRICE INT,
+DWH_CREATE_DATE DATETIME DEFAULT GETDATE()
 );
+GO
+IF OBJECT_ID('SILVER.ERP_CUST_AZ12','U') IS NOT NULL DROP TABLE SILVER.ERP_CUST_AZ12;
+GO
+CREATE TABLE SILVER.ERP_CUST_AZ12
+(CID NVARCHAR(20),
+BDATE DATE,
+GEN NVARCHAR(10),
+DWH_CREATE_DATE DATETIME DEFAULT GETDATE()
+);
+GO
+IF OBJECT_ID('SILVER.ERP_LOC_A101','U') IS NOT NULL DROP TABLE SILVER.ERP_LOC_A101;
+GO
+CREATE TABLE SILVER.ERP_LOC_A101
+(CID NVARCHAR(50),
+CNTRY NVARCHAR(50)
+);
+GO
+IF OBJECT_ID('SILVER.ERP_PX_CAT_G1V2','U') IS NOT NULL DROP TABLE SILVER.ERP_PX_CAT_G1V2;
+GO
+CREATE TABLE SILVER.ERP_PX_CAT_G1V2
+(ID NVARCHAR(10),
+CAT NVARCHAR(20),
+SUBCAT NVARCHAR(30),
+MAINTENANCE NVARCHAR(5),
+DWH_CREATE_DATE DATETIME DEFAULT GETDATE()
+);
+
